@@ -22,9 +22,16 @@ namespace CheckoutService
             throw new NotImplementedException();
         }
 
-        public void Scan(string item)
+        public void Scan(string sku)
         {
-            throw new NotImplementedException();
+            if (ScannedItems.ContainsKey(sku))
+            {
+                ScannedItems[sku]++;
+            }
+            else
+            {
+                ScannedItems[sku] = 1;
+            }
         }
     }
 }
