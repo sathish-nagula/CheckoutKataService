@@ -38,6 +38,14 @@ namespace CheckoutService.Tests
 
         }
 
+        [Fact]
+        public void Scan_InvalidSKU_ShouldNotAddItemToScannedItems()
+        {
+            string sku = "X";
+            checkout.Scan(sku);
+            Assert.False(checkout.ScannedItems.ContainsKey(sku));
+        }
+
 
     }
 }
