@@ -24,13 +24,16 @@ namespace CheckoutService
 
         public void Scan(string sku)
         {
-            if (ScannedItems.ContainsKey(sku))
+            if (items.Exists(i => i.SKU == sku))
             {
-                ScannedItems[sku]++;
-            }
-            else
-            {
-                ScannedItems[sku] = 1;
+                if (ScannedItems.ContainsKey(sku))
+                {
+                    ScannedItems[sku]++;
+                }
+                else
+                {
+                    ScannedItems[sku] = 1;
+                }
             }
         }
     }
