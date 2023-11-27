@@ -86,6 +86,20 @@ namespace CheckoutService.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void GetTotalPrice_MultipleItemsScannedWithDiscounts_ShouldReturnTotalPriceWithDiscounts()
+        {
+            string[] skus = new string[] { "A", "A", "A", "B", "B", "C", "D" };
+            decimal expected = 195;
+
+            foreach (var sku in skus)
+            {
+                checkout.Scan(sku);
+            }
+            decimal actual = checkout.GetTotalPrice();
+
+            Assert.Equal(expected, actual);
+        }
 
     }
 }
