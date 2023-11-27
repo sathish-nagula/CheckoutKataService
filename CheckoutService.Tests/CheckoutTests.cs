@@ -54,6 +54,17 @@ namespace CheckoutService.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void GetTotalPrice_OneItemScanned_ShouldReturnItemPrice()
+        {
+            string sku = "A";
+            decimal expected = items.Find(i => i.SKU == sku).Price;
+            
+            checkout.Scan(sku);
+            decimal actual = checkout.GetTotalPrice();
+
+            Assert.Equal(expected, actual);
+        }
 
 
     }
