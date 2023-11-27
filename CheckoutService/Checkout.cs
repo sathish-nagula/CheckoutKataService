@@ -23,9 +23,27 @@ namespace CheckoutService
             foreach (var item in ScannedItems)
             {
                 var itemInfo = items.Find(i => i.SKU == item.Key);
+                var discountRule = discountRules.Find(d => d.SKU == item.Key);
                 if (itemInfo != null)
                 {
-                    total += itemInfo.Price;    
+                    if (discountRule != null)
+                    {
+                        if (item.Value >= discountRule.Quantity)
+                        { 
+                        int quotient = item.Value / discountRule.Quantity;
+                        int remainder = item.Value % discountRule.Quantity;
+
+                        total += quotient * (itemInfo.Price * discountRule.Quantity - discountRule.Discount) + remainder * itemInfo.Price;
+                        }
+                        else
+                        {
+                            total += item.Value * itemInfo.Price;
+                        }
+                    }
+                    else
+                    {
+                        total += item.Value * itemInfo.Price;
+                    }
                 }
 
             }

@@ -90,7 +90,7 @@ namespace CheckoutService.Tests
         public void GetTotalPrice_MultipleItemsScannedWithDiscounts_ShouldReturnTotalPriceWithDiscounts()
         {
             string[] skus = new string[] { "A", "A", "A", "B", "B", "C", "D" };
-            decimal expected = 195;
+            decimal expected = 210;
 
             foreach (var sku in skus)
             {
