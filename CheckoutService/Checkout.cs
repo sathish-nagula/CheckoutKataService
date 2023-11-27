@@ -6,7 +6,7 @@ namespace CheckoutService
     {
         private List<Item> items;
         private List<DiscountRule> discountRules;
-        public Dictionary<string, int> ScannedItems;
+        public Dictionary<string, int> ScannedItems { get; }
         private decimal total;
 
         public Checkout(List<Item> items, List<DiscountRule> discountRules)
