@@ -45,6 +45,15 @@ namespace CheckoutService.Tests
             checkout.Scan(sku);
             Assert.False(checkout.ScannedItems.ContainsKey(sku));
         }
+        
+        [Fact]
+        public void GetTotalPrice_NoItemsScanned_ShouldReturnZero()
+        {
+            decimal expected = 0;
+            decimal actual = checkout.GetTotalPrice();
+            Assert.Equal(expected, actual);
+        }
+
 
 
     }
