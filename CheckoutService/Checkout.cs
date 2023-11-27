@@ -17,9 +17,19 @@ namespace CheckoutService
             total = 0;
         }
 
-        public int GetTotalPrice()
+        public decimal GetTotalPrice()
         {
-            throw new NotImplementedException();
+            total = 0;
+            foreach (var item in ScannedItems)
+            {
+                var itemInfo = items.Find(i => i.SKU == item.Key);
+                if (itemInfo != null)
+                {
+                    total += itemInfo.Price;    
+                }
+
+            }
+            return total;
         }
 
         public void Scan(string sku)
