@@ -26,19 +26,13 @@ namespace CheckoutService
                 var discountRule = discountRules.Find(d => d.SKU == item.Key);
                 if (itemInfo != null)
                 {
-                    if (discountRule != null)
+                    if (discountRule != null && item.Value >= discountRule.Quantity)
                     {
-                        if (item.Value >= discountRule.Quantity)
-                        { 
                         int quotient = item.Value / discountRule.Quantity;
                         int remainder = item.Value % discountRule.Quantity;
 
                         total += quotient * (itemInfo.Price * discountRule.Quantity - discountRule.Discount) + remainder * itemInfo.Price;
-                        }
-                        else
-                        {
-                            total += item.Value * itemInfo.Price;
-                        }
+
                     }
                     else
                     {
