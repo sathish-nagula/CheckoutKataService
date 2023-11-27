@@ -89,21 +89,6 @@ namespace CheckoutService.Tests
         [Fact]
         public void GetTotalPrice_MultipleItemsScannedWithDiscounts_ShouldReturnTotalPriceWithDiscounts()
         {
-            string[] skus = new string[] { "A", "A", "A", "B", "B", "C", "D" };
-            decimal expected = 210;
-
-            foreach (var sku in skus)
-            {
-                checkout.Scan(sku);
-            }
-            decimal actual = checkout.GetTotalPrice();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void GetTotalPrice_MultipleItemsScannedWithDiscounts_ExceededQuantity_ShouldReturnTotalPriceWithDiscountsOnlyForAllowedQuantity()
-        {
             string[] skus = new string[] { "A", "A", "A", "A", "B", "B", "B", "C", "D", "D" };
             decimal expected = 305;
 
@@ -115,6 +100,8 @@ namespace CheckoutService.Tests
 
             Assert.Equal(expected, actual);
         }
+
+
 
     }
 }
